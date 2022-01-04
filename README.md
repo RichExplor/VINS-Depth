@@ -10,7 +10,7 @@
 - 具体参考lvi_sam 
 
 **Pictures**
-<div align="center"><img width=80% height=80% src="https://github.com/GuoFeng-X/VINS-Depth/tree/master/support_files/image/kitti-08-全局轨迹.png"/></div>
+<div align="center"><img width=80% height=80% src="https://github.com/GuoFeng-X/VINS-Depth/blob/master/support_files/image/kitti-08-全局轨迹.png"/></div>
 
 
 **11 Jan 2019**: An extension of **VINS**, which supports stereo cameras / stereo cameras + IMU / mono camera + IMU, is published at [VINS-Fusion](https://github.com/HKUST-Aerial-Robotics/VINS-Fusion)
