@@ -153,8 +153,9 @@ sensor_msgs::ChannelFloat32 getFeatureDepth(pcl::PointCloud<PointType>::Ptr& dep
             countDepth++;
         }
     }
+    
+    std::cout<<"countDepth is "<<countDepth<<std::endl;
 
-    // std::cout<<"countDepth is "<<countDepth<<std::endl;
     // 4.5 将3d点变换为2d点
     vector<cv::Point2d> points_2f;
     vector<float> points_distance;
