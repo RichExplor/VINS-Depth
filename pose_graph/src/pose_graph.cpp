@@ -156,8 +156,8 @@ void PoseGraph::addKeyFrame(KeyFrame* cur_kf, bool flag_detect_loop)
         loop_path_file.setf(ios::fixed, ios::floatfield);
         loop_path_file.precision(9);
 
-        // loop_path_file << cur_kf->time_stamp  << " ";
-        loop_path_file << cur_kf->time_stamp - first_times << " ";  // 使用kitti数据集格式
+        loop_path_file << cur_kf->time_stamp  << " ";
+        // loop_path_file << cur_kf->time_stamp - first_times << " ";  // 使用kitti数据集格式
 
         loop_path_file.precision(5);
         loop_path_file  << P.x() << " "
@@ -635,8 +635,8 @@ void PoseGraph::updatePath()
             loop_path_file.setf(ios::fixed, ios::floatfield);
             loop_path_file.precision(9);
 
-            loop_path_file << (*it)->time_stamp - first_times << " ";
-            // loop_path_file << (*it)->time_stamp << " ";
+            // loop_path_file << (*it)->time_stamp - first_times << " ";  // KITTI数据集格式
+            loop_path_file << (*it)->time_stamp << " ";   
             
             loop_path_file.precision(5);
             loop_path_file  << P.x() << " "
