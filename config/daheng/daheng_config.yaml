@@ -6,14 +6,21 @@ image_topic: "/galaxy_camera/image"
 lidar_topic: "/velodyne_points"
 output_path: "/home/lenovo/output/"
 
-
 # lidar to camera extrinsic
-lidar_to_cam_tx: -0.085433
-lidar_to_cam_ty: 0.0109158
-lidar_to_cam_tz: -0.122115
-lidar_to_cam_rx: 0.441787
-lidar_to_cam_ry: -1.59319
-lidar_to_cam_rz: 1.14423
+exRotation: !!opencv-matrix
+   rows: 3
+   cols: 3
+   dt: d
+   data: [-0.0250049,    -0.999688,   0.00068552,
+           -0.00957396,  -0.0151184,    -0.99984,
+           0.999749,  -0.0203858, -0.00926481]
+
+#Translation from camera frame to imu frame, imu^T_cam
+exTranslation: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [-0.085433, 0.0109158, -0.122115]
 
 
 #camera calibration 
@@ -78,7 +85,7 @@ g_norm: 9.79754     # gravity magnitude
 loop_closure: 1                    # start loop closure
 load_previous_pose_graph: 0        # load and reuse previous pose graph; load from 'pose_graph_save_path'
 fast_relocalization: 0             # useful in real-time and large project
-pose_graph_save_path: "/home/lenovo/output/pose_graph/" # save and load path
+pose_graph_save_path: "/home/lenovo/output/" # save and load path
 
 #unsynchronization parameters
 estimate_td: 0                      # online estimate time offset between camera and imu

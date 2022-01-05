@@ -345,8 +345,8 @@ void processing()
 
             // 3.转换到相机坐标系下
             pcl::PointCloud<PointType>::Ptr PointCloudOffset(new pcl::PointCloud<PointType>());
-            Eigen::Affine3f transOffset = pcl::getTransformation(LC_TX, LC_TY, LC_TZ, LC_RX, LC_RY, LC_RZ);
-            pcl::transformPointCloud(*PointCloudFull, *PointCloudOffset, transOffset);
+            pcl::transformPointCloud(*PointCloudFull, *PointCloudOffset, LIDAR_CAMERA_EX);
+
             *PointCloudFull = *PointCloudOffset;
             publishCloud(&pub_PointCloud, PointCloudFull, laserCloudMsgs->header.stamp, "world");
 

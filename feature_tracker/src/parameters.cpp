@@ -19,12 +19,8 @@ int FOCAL_LENGTH;
 int FISHEYE;
 bool PUB_THIS_FRAME;
 
-double LC_TX;
-double LC_TY;
-double LC_TZ;
-double LC_RX;
-double LC_RY;
-double LC_RZ;
+
+Eigen::Matrix4d LIDAR_CAMERA_EX;
 
 template <typename T>
 T readParam(ros::NodeHandle &n, std::string name)
@@ -57,12 +53,18 @@ void readParameters(ros::NodeHandle &n)
     fsSettings["imu_topic"] >> IMU_TOPIC;
     fsSettings["lidar_topic"] >> LIDAR_TOPIC;
 
-    LC_TX = fsSettings["lidar_to_cam_tx"];
-    LC_TY = fsSettings["lidar_to_cam_ty"];
-    LC_TZ = fsSettings["lidar_to_cam_tz"];
-    LC_RX = fsSettings["lidar_to_cam_rx"];
-    LC_RY = fsSettings["lidar_to_cam_ry"];
-    LC_RZ = fsSettings["lidar_to_cam_rz"];
+    cv::Mat cv_R, cv_T;
+    fsSettings["exRotation"] >> cv_R;
+    fsSettings["exTranslation"] >> cv_T;
+    Eigen::Matrix3d eigen_R;
+    Eigen::Vector3d eigen_T;
+    cv::cv2eigen(cv_R, eigen_R);
+    cv::cv2eigen(cv_T, eigen_T);
+    Eigen::Quaterniond Q(eigen_R);
+    eigen_R = Q.normalized();
+    LIDAR_CAMERA_EX = Eigen::Matrix4d::Identity();
+    LIDAR_CAMERA_EX.block(0,0,3,3) = eigen_R;
+    LIDAR_CAMERA_EX.block(0,3,3,1) = eigen_T;
 
 
     MAX_CNT = fsSettings["max_cnt"];

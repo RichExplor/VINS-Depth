@@ -41,6 +41,8 @@ add_executable(image_node
     src/parameters.cpp
     )
 
+
 target_link_libraries(feature_tracker ${catkin_LIBRARIES} ${OpenCV_LIBS} ${PCL_LIBRARIES})
 
 target_link_libraries(image_node ${catkin_LIBRARIES} ${OpenCV_LIBS})
+

@@ -1,6 +1,10 @@
 #pragma once
 #include <ros/ros.h>
-#include <opencv2/highgui/highgui.hpp>
+#include <eigen3/Eigen/Dense>
+
+#include <opencv2/opencv.hpp>
+#include <opencv2/core/eigen.hpp>
+
 
 #include <thread>
 #include <mutex>
@@ -39,12 +43,7 @@ extern int EQUALIZE;
 extern int FISHEYE;
 extern bool PUB_THIS_FRAME;
 
-extern double LC_TX;
-extern double LC_TY;
-extern double LC_TZ;
-extern double LC_RX;
-extern double LC_RY;
-extern double LC_RZ;
+extern Eigen::Matrix4d LIDAR_CAMERA_EX;
 
 void readParameters(ros::NodeHandle &n);
 
